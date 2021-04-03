@@ -8,6 +8,14 @@
         "pattern": ".so",
         "folder": "./"
     },
+    "extra_config": {
+        "github_com/devopsfaith/krakend-gologging": {
+          "level":  "DEBUG",
+          "prefix": "[KRAKEND]",
+          "syslog": false,
+          "stdout": true
+        }
+    },
     "endpoints": [
         {
             "endpoint": "/walletsolidity/gettransactioninfobyid",
@@ -24,7 +32,12 @@
                         "github.com/devopsfaith/krakend-martian": {
                             "header.RollOver": {
                                 "name": "TRON-PRO-API-KEY",
-                                "value": "9edf0885-8371-495f-9d59-befb9ce56885"
+                                "values": [
+                                    "9edf0885-8371-495f-9d59-befb9ce56885",
+                                    "634de746-81f8-43c7-be3b-dc8eaa7d856e",
+                                    "9e5b8bc5-9d4f-4fea-a967-e41f15f3b2b0"
+                                ],
+                                "printSelectedValue": true
                             }
                         }
                     },

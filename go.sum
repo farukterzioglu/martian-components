@@ -1,5 +1,6 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/devopsfaith/flatmap v0.0.0-20200601181759-8521186182fc/go.mod h1:J9Y/58s7wx7HbHT3i4UKNwLGuBB9qCf0/JUdEFGDPmA=
+github.com/devopsfaith/krakend v1.3.0 h1:vz5p0bjEFW7hIJz0fkLsWapq/bQP7tY6rHFKjFkD7Vo=
 github.com/devopsfaith/krakend v1.3.0/go.mod h1:b8i/JCI1/iFjg7w9tvg3QFpT5Tc6Qy/75nj+i5dhPCA=
 github.com/devopsfaith/krakend-martian v0.0.0-20191207191841-92e3287c36d9 h1:KR9u7DoS8pvFsRrWP+pR6jJPFaSYLkCXCkfmv+WnMq0=
 github.com/devopsfaith/krakend-martian v0.0.0-20191207191841-92e3287c36d9/go.mod h1:rgjNUD1sqpJj2VFeJdm7NA41BrEOf/Uj8Iv2rPQPlGI=

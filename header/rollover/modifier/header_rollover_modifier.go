@@ -17,19 +17,27 @@ package modifier
 import (
 	"encoding/json"
 	"net/http"
+	"os"
 	"strconv"
 
+	"github.com/devopsfaith/krakend/logging"
 	"github.com/google/martian/parse"
 )
 
 type AppendModifier struct {
-	Name  string `json:"name"`
-	Value string `json:"value"`
+	Name               string   `json:"name"`
+	Values             []string `json:"values"`
+	PrintSelectedValue bool     `json:"printSelectedValue"`
 }
 
 // ModifyRequest appends the header at name with value to the request.
 func (m *AppendModifier) ModifyRequest(req *http.Request) error {
-	return RequestHeader(req).Set(m.Name, m.Value)
+	if m.PrintSelectedValue {
+		logger, _ := logging.NewLogger("DEBUG", os.Stdout, "")
+		logger.Debug("selected header value: " + m.Values[0])
+	}
+
+	return RequestHeader(req).Set(m.Name, m.Values[0])
 }
 
 type Header struct {

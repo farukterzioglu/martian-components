@@ -7,7 +7,7 @@ import (
 
 func init() {
 	register.Set("header.RollOver", []register.Scope{register.ScopeRequest}, func(b []byte) (interface{}, error) {
-		return modifier.AppendModifierFromJSON(b)
+		return modifier.FromJSON(b)
 	})
 }
 

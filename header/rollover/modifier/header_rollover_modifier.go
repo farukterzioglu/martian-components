@@ -19,23 +19,17 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/google/martian"
 	"github.com/google/martian/parse"
 )
 
-type appendModifier struct {
-	name, value string
-}
-
-type appendModifierJSON struct {
-	Name  string               `json:"name"`
-	Value string               `json:"value"`
-	Scope []parse.ModifierType `json:"scope"`
+type AppendModifier struct {
+	Name  string `json:"name"`
+	Value string `json:"value"`
 }
 
 // ModifyRequest appends the header at name with value to the request.
-func (m *appendModifier) ModifyRequest(req *http.Request) error {
-	return RequestHeader(req).Set(m.name, m.value)
+func (m *AppendModifier) ModifyRequest(req *http.Request) error {
+	return RequestHeader(req).Set(m.Name, m.Value)
 }
 
 type Header struct {
@@ -82,16 +76,6 @@ func (h *Header) Set(name, value string) error {
 	return nil
 }
 
-// NewAppendModifier returns an appendModifier that will append a header with
-// with the given name and value for both requests and responses. Existing
-// headers with the same name will be left in place.
-func newAppendModifier(name, value string) martian.RequestModifier {
-	return &appendModifier{
-		name:  http.CanonicalHeaderKey(name),
-		value: value,
-	}
-}
-
 // AppendModifierFromJSON takes a JSON message as a byte slice and returns
 // an appendModifier and an error.
 //
@@ -101,13 +85,11 @@ func newAppendModifier(name, value string) martian.RequestModifier {
 //  "name": "X-Martian",
 //  "value": "true"
 // }
-func AppendModifierFromJSON(b []byte) (*parse.Result, error) {
-	msg := &appendModifierJSON{}
+func FromJSON(b []byte) (*parse.Result, error) {
+	msg := &AppendModifier{}
 	if err := json.Unmarshal(b, msg); err != nil {
 		return nil, err
 	}
 
-	modifier := newAppendModifier(msg.Name, msg.Value)
-
-	return parse.NewResult(modifier, msg.Scope)
+	return parse.NewResult(msg, []parse.ModifierType{parse.Request})
 }

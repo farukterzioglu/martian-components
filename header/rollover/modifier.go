@@ -6,5 +6,5 @@ import (
 )
 
 func init() {
-	parse.Register("header.RollOver", modifier.AppendModifierFromJSON)
+	parse.Register("header.RollOver", modifier.FromJSON)
 }

@@ -19,8 +19,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/google/martian/v3"
-	"github.com/google/martian/v3/parse"
+	"github.com/google/martian"
+	"github.com/google/martian/parse"
 )
 
 type appendModifier struct {

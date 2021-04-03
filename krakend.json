@@ -1,0 +1,45 @@
+{
+    "version": 2,
+    "timeout": "3000ms",
+    "cache_ttl": "300s",
+    "output_encoding": "json",
+    "name": "TronGW",
+    "plugin": {
+        "pattern": ".so",
+        "folder": "./"
+    },
+    "endpoints": [
+        {
+            "endpoint": "/walletsolidity/gettransactioninfobyid",
+            "method": "POST",
+            "output_encoding": "no-op",
+            "extra_config": {},
+            "backend": [
+                {
+                    "url_pattern": "/walletsolidity/gettransactioninfobyid",
+                    "encoding": "no-op",
+                    "sd": "static",
+                    "method": "POST",
+                    "extra_config": {
+                        "github.com/devopsfaith/krakend-martian": {
+                            "header.Rollover": {
+                                "scope": [
+                                    "request"
+                                ],
+                                "name": "TRON-PRO-API-KEY",
+                                "value": "4c045bcb-e596-49c5-982f-9c094a1da171"
+                            }
+                        }
+                    },
+                    "host": [
+                        "https://api.trongrid.io"
+                    ],
+                    "disable_host_sanitize": false
+                }
+            ],
+            "querystring_params": [
+                "visible"
+            ]
+        }
+    ]
+}

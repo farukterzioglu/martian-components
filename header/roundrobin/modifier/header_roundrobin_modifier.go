@@ -30,14 +30,21 @@ type RoundRobinModifier struct {
 	PrintSelectedValue bool     `json:"printSelectedValue"`
 }
 
+var index int = 0
+
 // ModifyRequest appends the header at name with value to the request.
 func (m *RoundRobinModifier) ModifyRequest(req *http.Request) error {
-	if m.PrintSelectedValue {
-		logger, _ := logging.NewLogger("DEBUG", os.Stdout, "")
-		logger.Debug("selected header value: " + m.Values[0])
+	selectedValue := m.Values[index]
+	if index++; index >= len(m.Values) {
+		index = 0
 	}
 
-	return RequestHeader(req).Set(m.Name, m.Values[0])
+	if m.PrintSelectedValue {
+		logger, _ := logging.NewLogger("DEBUG", os.Stdout, "")
+		logger.Debug("selected header value: " + selectedValue)
+	}
+
+	return RequestHeader(req).Set(m.Name, selectedValue)
 }
 
 type Header struct {

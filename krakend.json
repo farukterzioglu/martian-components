@@ -30,7 +30,7 @@
                     "method": "POST",
                     "extra_config": {
                         "github.com/devopsfaith/krakend-martian": {
-                            "header.RollOver": {
+                            "header.RoundRobin": {
                                 "name": "TRON-PRO-API-KEY",
                                 "values": [
                                     "9edf0885-8371-495f-9d59-befb9ce56885",
